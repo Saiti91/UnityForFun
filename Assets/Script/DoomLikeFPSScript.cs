@@ -26,7 +26,7 @@ public class DoomLikeFPSScript : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            cameraTransform.Rotate(Vector3.up, +yawRotationSpeed*Time.deltaTime); 
+            cameraTransform.Rotate(Vector3.up, +yawRotationSpeed*Time.deltaTime);
         }
     }
 }
