@@ -18,15 +18,27 @@ public class DukeNukemScriptController : MonoBehaviour
 
     private void Update()
     {
+        var directionIntent = Vector3.zero;
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            cameraTransform.position += cameraTransform.rotation*Vector3.forward * (Time.deltaTime * cameraSpeed); 
+            directionIntent += Vector3.forward;
         }
         if (Input.GetKey(KeyCode.DownArrow))
         {
-            cameraTransform.position -= cameraTransform.rotation*Vector3.forward * (Time.deltaTime * cameraSpeed); 
+            directionIntent += Vector3.back;
+        }
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            directionIntent += Vector3.left;
+        }
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            directionIntent += Vector3.right;
         }
 
+        var normalizedDirection = directionIntent.normalized;
+
+        cameraTransform.position += cameraTransform.rotation * normalizedDirection * (Time.deltaTime * cameraSpeed);
         turn.x = Input.GetAxis("Mouse X");
         cameraTransform.Rotate(Vector3.up, turn.x*yawRotationSpeed *Time.deltaTime);
     }
